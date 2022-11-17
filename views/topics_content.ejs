@@ -1,0 +1,91 @@
+<div class="text-center">
+    <form class="" method="post">
+      <h4>User Name:-<%=name%></h4>
+  
+      <span><strong>Topic Name -> </strong></span>
+      <input
+        type="text"
+        placeholder="<%=topic%>"
+        value="<%=topic%>"
+        name="topicName"
+      />
+      <br />
+      <textarea id="topiccontent" name="topiccontent" rows="10" cols="100">
+  <%=content%></textarea
+      >
+      <br />
+      <input
+        type="submit"
+        class="btn btn-primary"
+        value="Submit"
+        formaction="/users/create/topic"
+      />
+    </form>
+  </div>
+  <h5>ANY CALL ACTION:</h5>
+  <div
+    class="modal position-static d-block bg-secondary d-flex justify-content-center m-1"
+  >
+    <div class="bg-success p-1 m-1 rounded-3 "><p class="align-text-bottom">4-Totally Understood</p></div>
+    <div class="bg-warning p-1 m-1 rounded-3 ">
+      <p>3- Somewhat Understood</p>
+    </div>
+    <div class="bg-primary p-1 m-1 rounded-3 align-middle"><p>2- Not Clear</p></div>
+    <div class="bg-danger p-1 m-1 rounded-3 align-middle"><p>1 – Totally rubbish</p></div>
+  </div>
+  
+  <div>
+    <% if(split){%> <% for(let i of split){%>
+    <form
+      class=""
+      action="/users/value?index=<%=split.indexOf(i)%>&topic=<%=topic%>"
+      method="post"
+    >
+      <ul>
+        <li>
+          <!-- <span><%=split.indexOf(i)%></span> -->
+          <!-- <span><%=i.sentence%></span> -->
+          <% if(i.value==4){%>
+            <span style="color: green"><%=i.sentence%></span>
+            <%}else if(i.value==3){%>
+            <span style="color: rgb(221, 221, 33)"><%=i.sentence%></span>
+            <%}else if(i.value==2){%>
+            <span style="color: rgb(51, 91, 235)"><%=i.sentence%></span>
+            <%}else if(i.value==1){%>
+            <span style="color: red"><%=i.sentence%></span>
+            <%}else{%>
+            <span><%=i.sentence%></span>
+            <%}%> 
+          <input
+            type="text"
+            class="border border-3 rounded-circle text-center border-secondary"
+            placeholder="<%=i.value%>"
+            name="value"
+            style="width: 36px"
+          />
+          <input class="bg-light border border-dark border-2 rounded-pill" style="border:none;" type="submit" value="value" />
+        </li>
+      </ul>
+    </form>
+    <%}%> <%}%>
+  </div>
+  
+  <h5>AFTER CALL ACTION:</h5>
+  <div class="p-4 m-4 bg-dark text-white rounded-3">
+    <% if(split){%> 
+    <% for(let i of split){%> 
+    <% if(i.value==4){%>
+    <span style="color: green"><strong><%=i.sentence%></strong></span>
+    <%}else if(i.value==3){%>
+    <span style="color: rgb(221, 221, 33)"><strong><%=i.sentence%></strong></span>
+    <%}else if(i.value==2){%>
+    <span style="color: rgb(51, 91, 235)"><strong><%=i.sentence%></strong></span>
+    <%}else if(i.value==1){%>
+    <span style="color: red"><strong><%=i.sentence%></strong></span>
+    <%}else{%>
+    <span><strong><%=i.sentence%></strong></span>
+    <%}%> 
+    <%}%> 
+    <%}%>
+  </div>
+  
